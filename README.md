@@ -1,6 +1,6 @@
-MiniUrl
+**MiniUrl**
 
-This is the parent repository of MiniUrl application containing multiple microservices and their helm charts.
+This is the parent repository of MiniUrl application containing its microservices and their helm charts.
 
 **Services**
 * traefik-service
