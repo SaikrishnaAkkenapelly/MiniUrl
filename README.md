@@ -1,6 +1,6 @@
 MiniUrl
 
-This repository includes directories for redirect service, shortening service, and token service. Each fulfilling specific functions.
+This is the parent repository of MiniUrl application containing multiple microservices and their helm charts.
 
 **Services**
 * traefik-service
