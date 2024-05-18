@@ -1,4 +1,6 @@
-#MiniUrl : A URL Shortening Appilcation
+MiniUrl
+
+This repository includes directories for redirect service, shortening service, and token service. Each fulfilling specific functions.
 
 **Services**
 * traefik-service
