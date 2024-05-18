@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "miniurl-token-service-chart.fullname" . }}
+  labels:
+    {{- include "miniurl-token-service-chart.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "miniurl-token-service-chart.selectorLabels" . | nindent 4 }}

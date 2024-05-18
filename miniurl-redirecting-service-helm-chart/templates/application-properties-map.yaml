@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  {{ $firstVolume := index .Values.volumes 0 }}
+  name: {{ $firstVolume.configMap.name }}
+data:
+  application.properties: |
+    {{ if .Values.application.cassandra.contact }}
+    spring.cassandra.contact-points={{ .Values.application.cassandra.contact }}
+    {{ end }}
+    {{ if .Values.application.cassandra.port }} 
+    spring.cassandra.port={{ .Values.application.cassandra.port }}
+    {{ end }}
+    {{ if .Values.application.cassandra.keyspace }}
+    spring.cassandra.keyspace-name={{ .Values.application.cassandra.keyspace }}
+    {{ end }}

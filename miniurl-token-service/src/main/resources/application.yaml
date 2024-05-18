@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: aws
+    
+server:
+  port: 8081
+
+logging:
+  level:
+    com:
+      miniurl: DEBUG
+
+---
+  
+spring:
+  config:
+    activate:
+      on-profile: local
+  cassandra:
+    contact-points: 127.0.0.1
+    port: 9042
+    keyspace-name: mini_url
+    schema-action: NONE
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: aws
+  cassandra:
+    config: file:cassandra.conf
+    keyspace-name: mini_url
+    schema-action: NONE

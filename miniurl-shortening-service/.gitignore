@@ -1,0 +1,24 @@
+# Eclipse project files
+.project
+.classpath
+.settings/
+
+# Maven target directory
+/target/
+
+# Compiled Java classes
+*.class
+
+# Logs and temp files
+/log/
+*.log
+*.log.*
+*.tmp
+*.swp
+
+# Compiled binary files
+*.jar
+*.war
+
+# macOS specific files
+.DS_Store

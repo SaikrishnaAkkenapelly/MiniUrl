@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: aws
+    
+server:
+  port: 8083
+
+logging:
+  level:
+    com:
+      miniurl: DEBUG
+
+tokenservice:
+  url : http://localhost:8081/token
+
+redirectingservice:
+  url : http://localhost:8082/redirect/%s
+
+---
+  
+spring:
+  config:
+    activate:
+      on-profile: local
+  cassandra:
+    contact-points: 127.0.0.1
+    port: 9042
+    keyspace-name: mini_url
+    schema-action: NONE
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: aws
+  cassandra:
+    config: file:cassandra.conf
+    keyspace-name: mini_url
+    schema-action: NONE
