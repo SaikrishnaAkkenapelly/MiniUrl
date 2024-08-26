@@ -3,7 +3,7 @@ package com.miniurl.redirectingservice.service;
 import java.util.NoSuchElementException;
 
 /** Interface to abstract business operations related to long URLs. */
-public interface LongUrlService {
+public interface ShortUrlMapper {
 
-  public String fetchLongUrl(String base62Id) throws NoSuchElementException;
+  public String getMappedUrl(String identifier) throws NoSuchElementException;
 }

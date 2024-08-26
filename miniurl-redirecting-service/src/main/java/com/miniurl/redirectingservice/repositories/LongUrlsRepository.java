@@ -1,7 +1,6 @@
 package com.miniurl.redirectingservice.repositories;
 
 import com.miniurl.redirectingservice.entities.LongUrl;
-import org.springframework.data.cassandra.repository.CassandraRepository;
+import org.springframework.data.repository.CrudRepository;
 
-/** Interface to abstract basic CRUD operations related to long URLs. */
-public interface LongUrlsRepository extends CassandraRepository<LongUrl, String> {}
+public interface LongUrlsRepository extends CrudRepository<LongUrl, String> {}

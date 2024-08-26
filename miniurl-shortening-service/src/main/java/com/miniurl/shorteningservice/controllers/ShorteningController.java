@@ -2,7 +2,7 @@ package com.miniurl.shorteningservice.controllers;
 
 import com.miniurl.shorteningservice.constants.ShorteningServiceConstants;
 import com.miniurl.shorteningservice.dto.ShorteningRequest;
-import com.miniurl.shorteningservice.services.ShorteningService;
+import com.miniurl.shorteningservice.services.ShortUrlGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,10 +22,10 @@ public class ShorteningController {
 
   private static final Logger logger = LoggerFactory.getLogger(ShorteningController.class);
 
-  private ShorteningService shorteningService;
+  private ShortUrlGenerator shortUrlGenerator;
 
-  public ShorteningController(ShorteningService shorteningService) {
-    this.shorteningService = shorteningService;
+  public ShorteningController(ShortUrlGenerator shortUrlGenerator) {
+    this.shortUrlGenerator = shortUrlGenerator;
   }
 
   /**
@@ -36,7 +36,7 @@ public class ShorteningController {
    */
   @PostMapping
   public ResponseEntity<String> getShortUrl(@RequestBody ShorteningRequest shorteningRequest) {
-    String shortUrl = shorteningService.shortenUrl(shorteningRequest.getLongUrl());
+    String shortUrl = shortUrlGenerator.generateShortUrl(shorteningRequest.getLongUrl());
     logger.debug("Short URL for : {} is : {}", shorteningRequest.getLongUrl(), shortUrl);
     return ResponseEntity.status(HttpStatus.CREATED).body(shortUrl);
   }

@@ -2,7 +2,7 @@ package com.miniurl.shorteningservice.services.impl;
 
 import com.miniurl.shorteningservice.entities.LongUrl;
 import com.miniurl.shorteningservice.repositories.LongUrlsRepository;
-import com.miniurl.shorteningservice.services.ShorteningService;
+import com.miniurl.shorteningservice.services.ShortUrlGenerator;
 import com.miniurl.shorteningservice.services.TokenCounter;
 import com.miniurl.shorteningservice.utils.Base62Encoder;
 import org.springframework.beans.factory.ObjectFactory;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 /** Implementation class for short URL business operations. */
 @Service
-public class ShorteningServiceImpl implements ShorteningService {
+public class Base62ShortUrlGenerator implements ShortUrlGenerator {
   private LongUrlsRepository longUrlsRepository;
   private ObjectFactory<LongUrl> longUrlObjectFactory;
   private TokenCounter tokenCounter;
@@ -26,7 +26,7 @@ public class ShorteningServiceImpl implements ShorteningService {
    * @param longUrlsRepository LongUrl Repository
    * @param tokenCounter object to issue the token
    */
-  public ShorteningServiceImpl(
+  public Base62ShortUrlGenerator(
       ObjectFactory<LongUrl> longUrlObjectFactory,
       LongUrlsRepository longUrlsRepository,
       TokenCounter tokenCounter) {
@@ -36,7 +36,7 @@ public class ShorteningServiceImpl implements ShorteningService {
   }
 
   @Override
-  public String shortenUrl(String url) {
+  public String generateShortUrl(String url) {
     int randomInteger = tokenCounter.checkAndIssueToken();
     String encodedRandomInteger = Base62Encoder.encode(randomInteger);
     LongUrl longUrl = longUrlObjectFactory.getObject();

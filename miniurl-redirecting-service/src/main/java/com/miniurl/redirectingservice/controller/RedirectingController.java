@@ -1,7 +1,7 @@
 package com.miniurl.redirectingservice.controller;
 
 import com.miniurl.redirectingservice.constants.RedirectingServiceConstants;
-import com.miniurl.redirectingservice.service.LongUrlService;
+import com.miniurl.redirectingservice.service.ShortUrlMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,10 +17,10 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping(RedirectingServiceConstants.REDIRECTING_SERVICE_BASE_URI)
 public class RedirectingController {
 
-  private LongUrlService longUrlService;
+  private ShortUrlMapper shortUrlMapper;
 
-  public RedirectingController(LongUrlService longUrlService) {
-    this.longUrlService = longUrlService;
+  public RedirectingController(ShortUrlMapper shortUrlMapper) {
+    this.shortUrlMapper = shortUrlMapper;
   }
 
   /**
@@ -31,7 +31,7 @@ public class RedirectingController {
    */
   @GetMapping("/{value}")
   public RedirectView redirect(@PathVariable("value") String base62Id) {
-    String longUrl = longUrlService.fetchLongUrl(base62Id);
+    String longUrl = shortUrlMapper.getMappedUrl(base62Id);
     RedirectView redirectView = new RedirectView();
     redirectView.setUrl(longUrl);
     return redirectView;
